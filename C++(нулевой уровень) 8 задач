@@ -1,0 +1,147 @@
+Задача №1
+#include <iostream>
+
+int main()
+{
+    float a, b; // ширина и длина прямоугольника 
+    float S; //площадь прямоугольника
+    std::cout << "Введите длину прямоугольника: ";
+    std::cin >> a;
+    std::cout << "Введите ширину прямоугольника: ";
+    std::cin >> b;
+    std::cout << "Длина прямоугольника: ";
+    std::cout << a;
+    std::cout << "  ";
+    std::cout << "Ширина прямоугольника: ";
+    std::cout << b;
+    return 0;
+}
+Задача №2
+#include <iostream>
+
+int main()
+{
+    float funt; // вес фунт
+    float kg; //вес кг
+    std::cout << "Введите вес в фунтах: ";
+    std::cin >> funt;
+    std::cout << "вес в фунтах: ";
+    std::cout << funt;
+    return 0;
+}
+Задача №3
+int main()
+{
+    float summa; // сумма вклада
+    int srok; //срок вклада
+    int stavka; //процентная ставка
+    float dohod; // сумма дохода
+    std::cout <<"Введите сумма вклада: ";
+    std::cin >> summa;
+    std::cout << "Введите срок вклада: ";
+    std::cin >> srok;
+    std::cout << "Введите процентная ставка: ";
+    std::cin >> stavka;
+    std::cout << "сумма вклада: ";
+    std::cout << summa;
+    std::cout << " срок вклада: ";
+    std::cout << srok;
+    std::cout << " процентная ставка: ";
+    std::cout << stavka;
+    return 0;
+}
+Задание №4
+int main()
+{
+    float r; // радиус круга
+    float S; // площадь круга
+    std::cout <<"Введите радиус: ";
+    std::cin >> r;
+    std::cout << "радиуc: ";
+    std::cout << r;
+    return 0;
+}
+
+Задание №5
+int main()
+{
+    float r1, r2; // внешний радиус и радиус отверстия
+    float S; // площадь кольца
+    std::cout <<"Введите внешний радиус: ";
+    std::cin >> r1;
+    std::cout << "Введите внутренний радиус: ";
+    std::cin >> r2;
+    std::cout << "радиус внешний: ";
+    std::cout << r1;
+    std::cout << " радиус отверстия: ";
+    std::cout << r2;
+    return 0;
+}
+
+Здание №6
+int main()
+{
+    float r, h; // радиус цилиндра, высота
+    float V, S; // объем цилиндра, площадь полной поверхности
+    std::cout <<"Введите радиус: ";
+    std::cin >> r;
+    std::cout <<"Введите высоту : ";
+    std::cin >> h;
+    std::cout << "радиус: ";
+    std::cout << r;
+    std::cout << " высота: ";
+    std::cout << h;
+    return 0;
+}
+
+Задание №7
+int main()
+{
+    float CenaTetr, CenaKar, CenaLin; // цены всех товаров
+    int KolTetr, KolKar; // Количество товаров
+    std::cout <<"Введите цену тетради: ";
+    std::cin >> CenaTetr;
+    std::cout <<"Введите цену карандаша: ";
+    std::cin >> CenaKar;
+    std::cout <<"Введите цену линейки: ";
+    std::cin >> CenaLin;
+    std::cout <<"Введите количество тетрадей: ";
+    std::cin >> KolTetr;
+    std::cout <<"Введите количество карандашей: ";
+    std::cin >> KolKar;
+    std::cout <<"цена тетради: ";
+    std::cout << CenaTetr;
+    std::cout <<" цену карандаша: ";
+    std::cout << CenaKar;
+    std::cout <<" цену линейки: ";
+    std::cout << CenaLin;
+    std::cout <<" количество тетрадей: ";
+    std::cout << KolTetr;
+    std::cout <<" количество карандашей: ";
+    std::cout << KolKar;
+    return 0;
+}
+
+Задание №8
+int main()
+{
+    float CenaTetr, CenaObl; // цены товаров
+    int KolTetr, KolObl; // Количество товаров
+    std::cout <<"Введите цену тетради: ";
+    std::cin >> CenaTetr;
+    std::cout <<"Введите цену обложки: ";
+    std::cin >> CenaObl;
+    std::cout <<"Введите количество тетрадей: ";
+    std::cin >> KolTetr;
+    std::cout <<"Введите количество обложек: ";
+    std::cin >> KolObl;
+    std::cout <<"цена тетради: ";
+    std::cout << CenaTetr;
+    std::cout <<" цену обложки: ";
+    std::cout << CenaObl;
+    std::cout <<" количество тетрадей: ";
+    std::cout << KolTetr;
+    std::cout <<" количество обложек: ";
+    std::cout << KolObl;
+    return 0;
+}
