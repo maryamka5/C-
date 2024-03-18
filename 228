@@ -1,0 +1,63 @@
+// ïâ¨ª®¥ç ï §¢¥§¤ 
+#include <graphics.h>
+#include <stdio.h>
+#include <conio.h>
+
+#define PATHTODRIVER "c:\\borlandc\\bgi\\"
+
+// ¯ïâ¨ª®¥ç ï §¢¥§¤ 
+#include "math.h"
+void star(int x0, int y0, int r)
+{
+    // x0,y0 - ª®®à¤¨ âë æ¥âà  §¢¥§¤ë
+    // r - à ¤¨ãá §¢¥§¤ë
+
+    int poly[20]; // ª®®à¤¨ âë ª®æ®¢ «ãç¥©
+                  // ¨ ¢¯ ¤¨
+    int a;  // ã£®« ¬¥¦¤ã ®áìî Ž• ¨ ¯àï¬®©,
+            // á®¥¤¨ïîé¥© æ¥âà §¢¥§¤ë ¨
+            // ª®¥æ «ãç  ¨«¨ â®çªã ¢¯ ¤¨ë
+    int r1; // à ¤¨ãá ®ªàã¦®áâ¨ à á¯®«®¦¥¨ï
+            // â®ç¥ª ¢¯ ¤¨
+
+#define RTOR 2.5 // ®â®è¥¨¥ à ¤¨ãá  «ãç¥©
+                 // ª à ¤¨ãáã ¢¯ ¤¨
+
+    int i;
+    a = 18;    // áâà®¨¬ ®â ¯à ¢®£® £®à. «ãç 
+    r1 = r/RTOR;
+    i=0;
+    do {
+        poly[i++] = x0+r*cos(a*2*M_PI/360);
+        poly[i++] = y0-r*sin(a*2*M_PI/360);
+        a = a+36;
+        poly[i++] = x0+r1*cos(a*2*M_PI/360);
+        poly[i++] = y0-r1*sin(a*2*M_PI/360);
+        a = a+36;
+        if (a > 360)  a = 18;
+    } while(i < 20);
+    setfillstyle(SOLID_FILL,RED);
+    fillpoly(10,poly);
+}
+
+void main(void)
+{
+   int gdriver = DETECT; // ¤à ©¢¥à
+   int gmode;            // à¥¦¨¬
+   int errorcode;        // ª®¤ ®è¨¡ª¨
+
+   initgraph(&gdriver, &gmode, PATHTODRIVER);
+   errorcode = graphresult();
+
+   if (errorcode != grOk)  // ®è¨¡ª  ¨¨æ¨ «¨§ æ¨¨ £à ä. à¥¦¨¬ 
+   {
+      printf("Žè¨¡ª : %d\n", errorcode);
+      puts("„«ï § ¢¥àè¥¨ï ¯à®£à ¬¬ë  ¦¬¨â¥ <Enter>");
+      getch();
+   }
+   else {
+      star(100, 100, 20);
+      getch();
+      closegraph(); // ¢ëå®¤ ¨§ £à ä¨ç¥áª®£® à¥¦¨¬ 
+   }
+}
