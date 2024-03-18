@@ -1,0 +1,28 @@
+// ”ãªæ¨ï compare ¢®§¢à é ¥â à¥§ã«ìâ â áà ¢¥¨ï ç¨á¥«
+// ¢ ¢¨¤¥ á¨¬¢®«  ®â®è¥¨ï
+#include "stdio.h"
+#include "conio.h"
+
+char compare(int a, int b)
+{
+    char res;
+    if (a > b) res = '>';
+       else if (a < b)  res = '<';
+              else res = '=';
+    return(res);
+}
+
+void main()
+{
+    int x1,x2;   // áà ¢¨¢ ¥¬ë¥ ç¨á« 
+    char res;    // à¥§ã«ìâ â áà ¢¥¨ï
+
+    puts("‚¢¥¤¨â¥ ¤¢  æ¥«ëå ç¨á«  ¨  ¦¬¨â¥ <Enter>");
+    printf("->");
+    scanf("%i%i", &x1, &x2);
+    res = compare(x1,x2);  // ¢ë§®¢ äãªæ¨¨ ¯à®£à ¬¬¨áâ 
+    printf("%i %c %i\n", x1, res, x2);
+
+    puts("\n„«ï § ¢¥àè¥¨ï à ¡®âë ¯à®£à ¬¬ë  ¦¬¨â¥ <Enter>");
+    getch();
+}
