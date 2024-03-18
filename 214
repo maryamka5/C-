@@ -1,0 +1,33 @@
+// ”ãªæ¨ï upcase
+#include "stdio.h"
+#include "conio.h"
+
+// äãªæ¨ï ¯à¥®¡à §®¢ ¨ï áâà®çëå ¡ãª¢ ¢ ¯à®¯¨áë¥
+char* upcase(char *st)
+{
+    int i = 0;
+    while ( st[i] )
+    {
+        if (st[i] >= 'a' && st[i] <= 'z' ||   // « â¨áª¨¥
+                st[i] >= ' ' && st[i] <= '¯')  // àãááª¨¥
+            st[i] -= 32;
+        else if (st[i] >= 'à' && st[i] <= 'ï')
+                st[i] -= 80;
+        i++;
+    }
+    return st;
+}
+
+//  ¯à¨¬¥à ¨á¯®«ì§®¢ ¨ï äãªæ¨¨ upcase
+void main()
+{
+    char st[80];
+
+    puts(" ‚¢¥¤¨â¥ áâà®ªã â¥ªáâ  ¨  ¦¬¨â¥ <Enter>");
+    printf("->");
+    gets(st);
+    puts(upcase(st));
+
+    puts("\n„«ï § ¢¥àè¥¨ï  ¦¬¨â¥ <Enter>");
+    getch();
+}
