@@ -1,0 +1,85 @@
+// ƒà ä¨ª äãªæ¨¨
+#include <graphics.h>
+#include <stdio.h>
+#include <conio.h>
+#include <math.h>
+
+#define PATHTODRIVER "c:\\borlandc\\bgi\\"
+
+// äãªæ¨¨, £à ä¨ª ª®â®àëå  ¤® ¯®áâà®¨âì
+float f1(float x)
+{
+    return(2 * sin(x) * exp(x/5));
+}
+
+void grafik()
+{
+    float x1=0,   // £à ¨æë ¨§¬¥¥¨ï  à£ã¬¥â  äãªæ¨¨
+          x2=25;
+    float y1,y2;  // £à ¨æë ¨§¬¥¥¨ï § ç¥¨ï äãªæ¨¨
+    float x;      //  à£ã¬¥â äãªæ¨¨
+    float y;      // § ç¥¨¥ äãªæ¨¨ ¢ â®çª¥ x
+    float dx=0.01;   // ¯à¨à é¥¨¥  à£ã¬¥â 
+    int l=50,     // «¥¢ë© ¨¦¨© ã£®« ®¡« áâ¨ £à ä¨ª 
+        b=400;
+    int w=300,    // è¨à¨  ¨ ¢ëá®â  ®¡« áâ¨ £à ä¨ª 
+        h=200;
+    float mx,my;  // ¬ áèâ ¡ ¯® ®áï¬ X ¨ Y
+    int x0,y0;    // â®çª  -  ç «® ª®®à¤¨ â
+    char st[25];  // ¨§®¡à ¦¥¨¥ ç¨á« 
+
+    //  ©¤¥¬ ¬ ªá¨¬ «ì®¥ ¨ ¬¨¨¬ «ì®¥ § ç¥¨¥
+    // äãªæ¨©   ®âà¥§ª¥ [x1,x2]
+    y1 = f1(x1); // ¬¨¨¬ã¬
+    y2 = f1(x1); // ¬ ªá¨¬ã¬
+    x = x1 + dx;
+    do {
+        y = f1(x);
+        if (y < y1)  y1 = y;
+        if (y > y2)  y2 = y;
+        x += dx;
+    } while (x <= x2);
+
+    // ¢ëç¨á«¨¬ ¬ áèâ ¡ ¯® ®áï¬
+    my = h/fabs(y2-y1);
+    mx = w/fabs(x2-x1);
+    // ®á¨
+    x0 = l;
+    y0 = b-abs(y1*my);
+    line(l,b,l,b-h);
+    line(x0,y0,x0+w,y0);
+    // ¬ ªá¨¬ «ì®¥ ¨ ¬¨¨¬ «ì®¥ § ç¥¨¥ äãªæ¨¨
+    sprintf(st,"%3.2f",y2);
+    outtextxy(l+5,b-h,st);
+    sprintf(st,"%3.2f",y1);
+    outtextxy(l+5,b,st);
+    // ¯®áâà®¥¨¥ £à ä¨ª 
+    x = x1;
+    do {
+        y = f1(x);
+        putpixel(x0+x*mx,y0-y*my,15);
+        x += dx;
+    } while (x <= x2);
+}
+
+void main(void)
+{
+   int gdriver = DETECT; // ¤à ©¢¥à
+   int gmode;            // à¥¦¨¬
+   int errorcode;        // ª®¤ ®è¨¡ª¨
+
+   initgraph(&gdriver, &gmode, PATHTODRIVER);
+   errorcode = graphresult();
+
+   if (errorcode == grOk)
+   {
+        grafik();
+        getchar();
+        closegraph();
+   }
+   else {
+      printf("Žè¨¡ª : %d\n", errorcode);
+      puts("„«ï § ¢¥àè¥¨ï ¯à®£à ¬¬ë  ¦¬¨â¥ <Enter>");
+      getch();
+   }
+}
