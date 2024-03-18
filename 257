@@ -1,0 +1,64 @@
+// ‚ëç¥àç¨¢ ¥â áå¥¬ã à¥ªãàá¨¢®© í«¥ªâà¨ç¥áª®© æ¥¯¨
+#include <graphics.h>
+#include <stdio.h>
+#include <conio.h>
+
+#define PATHTODRIVER "c:\\borlandc\\bgi\\"
+
+// ¢ëç¥àç¨¢ ¥â áå¥¬ã í«.æ¥¯¨ ®â â®çª¨
+// á ª®®à¤¨ â ¬¨ x,y
+void drcep(int k, int x, int y)
+{
+      #define dx 7 // è £ á¥âª¨ ¯® X
+      #define dy 7 // è £ á¥âª¨ ¯® Y
+
+      setcolor(GREEN);
+      line(x,y,x+2*dx,y);
+      rectangle(x+2*dx,y-dy,x+6*dx,y+dy);
+      line(x+6*dx,y,x+8*dx,y);
+      outtextxy(x+3*dx,y-3*dy,"R1");
+
+      setcolor(YELLOW);
+      line(x+8*dx,y,x+8*dx,y+2*dy);
+      rectangle(x+7*dx,y+2*dy,x+9*dx,y+6*dy);
+      line(x+8*dx,y+6*dy,x+8*dx,y+8*dy);
+      outtextxy(x+10*dx,y+2*dy,"R2");
+
+      setcolor(LIGHTGRAY);
+      line(x,y+8*dy,x+2*dx,y+8*dy);
+      rectangle(x+2*dx,y+7*dy,x+6*dx,y+9*dy);
+      line(x+6*dx,y+8*dy,x+8*dx,y+8*dy);
+      outtextxy(x+3*dx,y+5*dy,"R3");
+
+      if ( k > 1 )  drcep(k-1, x+8*dx, y);
+}
+
+void main(void)
+{
+   int k; // ¯®àï¤®ª æ¥¯¨
+
+   int gdriver = DETECT; // ¤à ©¢¥à
+   int gmode;            // à¥¦¨¬
+   int errorcode;        // ª®¤ ®è¨¡ª¨
+
+   initgraph(&gdriver, &gmode, PATHTODRIVER);
+   errorcode = graphresult();
+
+   if (errorcode == grOk)
+   {
+      printf("‚¢¥¤¨â¥ ¯®àï¤®ª æ¥¯¨ -> ");
+      scanf("%i", &k);
+      drcep(k, 10, 50);
+
+      outtextxy(10,200,
+                "„«ï § ¢¥àè¥¨ï  ¦¬¨â¥ <Enter>");
+      getch();
+      closegraph(); // ¢ëå®¤ ¨§ £à ä¨ç¥áª®£® à¥¦¨¬ 
+   }
+   else
+   {
+      printf("Žè¨¡ª : %d\n", errorcode);
+      puts("„«ï § ¢¥àè¥¨ï  ¦¬¨â¥ <Enter>");
+      getch();
+   }
+}
