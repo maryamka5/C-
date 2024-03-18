@@ -1,0 +1,50 @@
+// ‚ë¢®¤¨â   íªà  á®¤¥à¦¨¬®¥ ä ©« 
+// ¨¬ï ª®â®à®£® ãª § ® ¯®«ì§®¢ â¥«¥¬
+#include "stdio.h"
+#include "conio.h"
+#include "string.h"
+
+#define  MAXLEN 80    // ¬ ªá¨¬ «ì ï ¤«¨  áâà®ª¨ ¢ ä ©«¥
+void main()
+{
+    char fname[40];   // ¨¬ï ä ©« 
+    FILE * ;         // â¥ªáâ®¢ë© ä ©«
+
+    char st[MAXLEN+2];// áâà®ª , ¯à®ç¨â  ï ¨§ ä ©« 
+    int n = 0;        // ª®«-¢® áâà®ª, ¢ë¢¥¤¥ëå   íªà 
+    char key;         // ª« ¢¨è ,  ¦ â ï ¯®«ì§®¢ â¥«¥¬
+
+    puts("à®á¬®âà â¥ªáâ®¢®£® ä ©« ");
+    puts("‚¢¥¤¨â¥ ¯®«®¥ ¨¬ï ä ©«  ¨  ¦¬¨â¥ <Enter>");
+    printf("->");
+    scanf("%s",&fname);
+
+    // Žâªàëâì ä ©« ¢ à¥¦¨¬¥ çâ¥¨ï (r) â¥ªáâ  (t)
+    if ((f = fopen(fname, "rt")) == NULL)
+    {
+        printf("Žè¨¡ª  ¯à¨ ®¡à é¥¨¨ ª ä ©«ã %s\n", fname);
+        getch();
+        return;
+    }
+
+    clrscr();
+    while (!feof(f))
+    {
+        fgets(st, MAXLEN, f);
+        printf("%s", st);
+        if (++n > 21)
+        {
+          printf("\n„«ï ¯à®¤®«¦¥¨ï  ¦¬¨â¥ ");
+          printf("«î¡ãî ª« ¢¨èã...");
+          key = getch();
+          gotoxy(1,wherey()); // ªãàá®à ¢  ç «® â¥ªãé¥© áâà®ª¨
+          delline;            // ã¤ «¨âì á®®¡é¥¨¥ "„«ï
+                              // ¯à®¤®«¦¥¨ï ..."
+            n = 0;
+        }
+    }
+    fclose(f);     // § ªàëâì ä ©«
+
+    printf("\n„«ï § ¢¥àè¥¨ï  ¦¬¨â¥ <Enter>");
+    getch();
+}
