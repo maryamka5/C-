@@ -1,0 +1,40 @@
+// ”ãªæ¨ï Barrel2Ton ¯¥à¥áç¨âë¢ ¥â
+// æ¥ã §  ¡ àà¥«ì ¢ æ¥ã §  â®ã
+
+#include "stdafx.h"
+#include "stdio.h"
+#include "conio.h"
+
+// ¯¥à¥áç¨âë¢ ¥â æ¥ã §  ¡ àà¥«ì
+// ¢ æ¥ã §  â®ã
+float Barrel2Ton(float b)
+{
+    // b - æ¥  ¡ àà¥«ï 
+    float t; // æ¥  â®ë
+
+    t = b* (1000/136.4);
+    
+    //return (t);
+
+    // ‚¬¥áâ® ¯à¨¢¥¤¥ëå ¢ëè¥ ¨áâàãªæ¨©
+    // ¬®¦®  ¯¨á âì: 
+     return ( b* (1000/136.4) );
+    //
+}
+
+
+void main()
+{
+    float barrel; // æ¥  ¡ àà¥«ï
+    float ton;    // æ¥  â®ë
+
+    printf("\n–¥  ¡ àà¥«ï-> ");
+    scanf("%f", &barrel);
+
+    ton = Barrel2Ton(barrel);
+
+    printf("\–¥  â®ë:%6.2f", ton);
+    
+    printf("\n„«ï § ¢¥àè¥¨ï  ¦¬¨â¥ <Enter>");
+    getch();
+}
