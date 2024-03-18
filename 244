@@ -1,0 +1,44 @@
+// ‚ëç¨á«ï¥â áà¥¤¥¥  à¨ä¬¥â¨ç¥áª®¥ ç¨á¥«,
+//  å®¤ïé¨åáï ¢ ä ©« å
+#include "stdio.h"
+#include "conio.h"
+
+#define FNAME "numbers.txt\0" // ¨¬ï ä ©« 
+
+void main()
+{
+     char fname[20] = FNAME;
+     FILE *f;     // â¥ªáâ®¢ë© ä ©«
+
+     int a;       // ç¨á«®
+     int n = 0;   // ª®«¨ç¥áâ¢® ç¨á¥«
+     int sum = 0; // áã¬¬  ç¨á¥«
+     float sr;    // áà¥¤¥¥  à¨ä¬¥â¨ç¥áª®¥
+
+     puts("\n‚ëç¨á«¥¨¥ áà¥¤¥£®  à¨ä¬¥â¨ç¥áª®£®");
+     printf("ç¨á¥«,  å®¤ïé¨åáï ¢ ä ©«¥ %s", fname);
+
+     // Žâªàëâì ä ©« ¢ à¥¦¨¬¥ çâ¥¨ï (r) â¥ªáâ  (t)
+     if ((f = fopen(fname, "rt")) == NULL)
+     {
+        printf("Žè¨¡ª  ®âªàëâ¨ï ä ©«  ¤«ï çâ¥¨ï");
+        getch();
+        return;
+     }
+
+     while (!feof(f))
+     {
+        fscanf(f,"%i", &a);
+        sum += a;
+        n++;
+     }
+     fclose(f);     // § ªàëâì ä ©«
+
+     sr = (float) sum / n;
+     printf("‚¢¥¤¥® ç¨á¥«: %i\n", n);
+     printf("‘ã¬¬  ç¨á¥«: %i\n", sum);
+     printf("‘à¥¤¥¥  à¨ä¬¥â¨ç¥áª®¥: %3.2f", sr);
+
+     puts("\n„«ï § ¢¥àè¥¨ï  ¦¬¨â¥ <Enter>");
+     getch();
+}
