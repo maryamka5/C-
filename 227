@@ -1,0 +1,67 @@
+// Š®âãà ¯ïâ¨ª®¥ç®© §¢¥§¤ë
+#include <graphics.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+
+#define PATHTODRIVER "c:\\borlandc\\bgi\\"
+
+// ª®âãà ¯ïâ¨ª®¥ç®© §¢¥§¤ë
+#include "math.h"
+void starline(int x0, int y0, int r)
+{
+    // x0,y0 - ª®®à¤¨ âë æ¥âà  §¢¥§¤ë
+    // r - à ¤¨ãá §¢¥§¤ë
+
+    int x,y;// ª®®à¤¨ âë ª®æ  «ãç 
+            // ¨«¨ ¢¯ ¤¨ë
+    int a;  // ã£®« ¬¥¦¤ã ®áìî Ž• ¨ ¯àï¬®©,
+            // á®¥¤¨ïîé¥© æ¥âà §¢¥§¤ë ¨
+            // ª®¥æ «ãç  ¨«¨ â®çªã ¢¯ ¤¨ë
+    int r1; // à ¤¨ãá ®ªàã¦®áâ¨ à á¯®«®¦¥¨ï
+            // â®ç¥ª ¢¯ ¤¨
+
+#define RTOR 2.5 // ®â®è¥¨¥ à ¤¨ãá  «ãç¥©
+                 // ª à ¤¨ãáã ¢¯ ¤¨
+
+    a = 18;    // áâà®¨¬ ®â ¯à ¢®£® £®à. «ãç 
+    r1 = r/RTOR;
+    x = x0+r*cos(a*2*M_PI/360);
+    y = y0-r*sin(a*2*M_PI/360);
+    moveto(x,y);
+    for (int i = 0; i < 5; i++)
+    {
+        a = a+36;
+        x = x0+r1*cos(a*2*M_PI/360);
+        y = y0-r1*sin(a*2*M_PI/360);
+        lineto(x,y); // ®â «ãç  ª ¢¯ ¤¨¥
+        a = a+36;
+        if (a > 360)  a = 18;
+        x = x0+r*cos(a*2*M_PI/360);
+        y = y0-r*sin(a*2*M_PI/360);
+        lineto(x,y); // ®â ¢¯ ¤¨ë ª «ãçã
+    }
+}
+
+void main(void)
+{
+   int gdriver = DETECT; // ¤à ©¢¥à
+   int gmode;            // à¥¦¨¬
+   int errorcode;        // ª®¤ ®è¨¡ª¨
+
+   initgraph(&gdriver, &gmode, PATHTODRIVER);
+   errorcode = graphresult();
+
+   if (errorcode != grOk)  // ®è¨¡ª  ¨¨æ¨ «¨§ æ¨¨ £à ä. à¥¦¨¬ 
+   {
+      printf("Žè¨¡ª : %d\n", errorcode);
+      puts("„«ï § ¢¥àè¥¨ï ¯à®£à ¬¬ë  ¦¬¨â¥ <Enter>");
+      getch();
+      exit(1);
+   }
+
+   starline(100, 100, 50);
+   
+   getch();
+   closegraph(); // ¢ëå®¤ ¨§ £à ä¨ç¥áª®£® à¥¦¨¬ 
+}
