@@ -1,0 +1,50 @@
+#include "stdio.h"
+#include "conio.h"
+#include "string.h"
+
+void main()
+{
+#define NR 3
+#define NC 6
+    
+    float a[NR][NC]; // ¬ áá¨¢ NRåNC - NR áâà®ª ¨§ NC í«¥¬¥â®¢
+
+    FILE *f; // ä ©«
+
+    // ¯à¥¤¯®« £ ¥âáï, çâ® áâà®ª¨ â¥ªáâ®¢®£® ä ©« 
+    // á®¤¥à¦ â § ç¥¨ï áâà®ª í«¥¬¥â®¢ ¬ áá¨¢ 
+    
+     // Žâªàëâì ¤«ï çâ¥¨ï (r) â¥ªáâ®¢ë© ä ©« (t)
+     if ((f = fopen("c:\\borlandc\\cpp\\a.dat", "rt")) == NULL)
+     {
+        printf("¥â ä ©«  a.dat");
+        printf("\n„«ï § ¢¥àè¥¨ï  ¦¬¨â¥ <Enter>");
+        getch();
+        return;
+     }
+
+     int r,c; // ®¬¥à áâà®ª¨ ¨ áâ®«¡æ 
+
+     for ( r = 0; r < NR; r++)
+     {
+        for (c = 0; c < NC; c++)
+        {
+            fscanf(f, "%f", &a[r][c]);
+        }
+     }
+     fclose(f);
+
+     printf("\n„ ë¥, § £àã¦¥ë¥ ¢ ¬ áá¨¢ ¨§ ä ©« :\n");
+     // ¯®ª § âì ¯à®ç¨â ë¥ ¤ ë¥
+     for ( r = 0; r < NR; r++)
+     {
+        for (c = 0; c < NC; c++)
+        {
+            printf("%7.2f  ", a[r][c]);
+        }
+        printf("\n");
+     }
+
+    printf("\n„«ï § ¢¥àè¥¨ï  ¦¬¨â¥ <Enter>");
+    getch();
+}
