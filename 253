@@ -1,0 +1,27 @@
+// ¥ªãàá¨¢ ï äãªæ¨ï "” ªâ®à¨ «"
+#include "stdio.h"
+#include "conio.h"
+
+unsigned int factor(unsigned int k)
+{
+    if ( k == 1 )
+        return(1);
+    else
+        return(k*factor(k-1));
+}
+
+void main()
+{
+    unsigned int n; // ç¨á«®, ä ªâ®à¨ « ª®â®à®£®  ¤® ¢ëç¨á«¨âì
+    unsigned int f; // ä ªâ®à¨ « ç¨á«  n
+
+    puts("‚ëç¨á«¥¨¥ ä ªâ®à¨ « \n");
+    puts("‚¢¥¤¨â¥ ç¨á«®, ä ªâ®à¨ « ª®â®à®£®  ¤® ¢ëç¨á«¨âì");
+    printf("->");
+    scanf("%u", &n);
+    f = factor(n);
+    printf("” ªâ®à¨ « ç¨á«  %u à ¢¥ %u", n, f);
+
+    printf("\n„«ï § ¢¥àè¥¨ï  ¦¬¨â¥ <Enter>");
+    getch();
+}
