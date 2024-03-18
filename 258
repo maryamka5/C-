@@ -1,0 +1,148 @@
+// Šà¨¢ ï ƒ¨«ì¡¥àâ 
+
+#include <graphics.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include <math.h>
+#include <dos.h>
+#define PATHTODRIVER "c:\\borlandc\\bgi\\"
+
+#define DT  3  // § ¤¥à¦ª  ¯à¨ ¢ë¢®¤¥ ¤¨¨© ¯® â®çª ¬
+#define u 10   // ¢¥«¨ç¨  èâà¨å  ªà¨¢®© ƒ¨«ì¡¥àâ 
+
+void Gilbert(int p); // ¢ëç¥àç¨¢ ¥â ªà¨¢ãî ƒ¨«ì¡¥àâ 
+
+void main(void)
+{
+   int gdriver = DETECT; // ¤à ©¢¥à
+   int gmode;            // à¥¦¨¬
+   int errorcode;        // ª®¤ ®è¨¡ª¨
+
+   initgraph(&gdriver, &gmode, PATHTODRIVER);
+   errorcode = graphresult();
+
+   if (errorcode == grOk) {
+      outtextxy(10,10,"Šà¨¢ ï ƒ¨«ì¡¥àâ  ...");
+      Gilbert(4);
+      outtextxy(10,25,"„«ï § ¢¥àè¥¨ï  ¦¬¨â¥ <Enter>");
+      getch();
+      closegraph();
+   }
+   else {
+      printf("Žè¨¡ª : %d\n", errorcode);
+      printf("\„«ï § ¢¥àè¥¨ï ¯à®£à ¬¬ë  ¦¬¨â¥ <Enter>");
+      getch();
+   }
+}
+
+// Šà¨¢ ï ƒ¨«ì¡¥àâ  á®áâ®¨â ¨§ ç¥âëà¥å í«¥¬¥â®¢: a,b,c ¨ d.
+// Š ¦¤ë© í«¥¬¥â áâà®¨â á®®â¢¥âáâ¢ãîé ï äãªæ¨ï.
+void a(int i);
+void b(int i);
+void c(int i);
+void d(int i);
+
+void my_lineto(int x2, int y2); // ¢ëç¥àç¨¢ ¥â ¯® â®çª ¬ «¨¨î
+
+void Gilbert(int p) // p - ¯®àï¤®ª ªà¨¢®© ƒ¨«ì¡¥àâ 
+{
+   moveto(450,50);
+   a(p);
+}
+
+// «¥¬¥âë ªà¨¢®©.
+void a(int i)
+{
+    if (i > 0) {
+      d(i-1); my_lineto(getx() - u, gety());
+      a(i-1); my_lineto(getx(), gety() + u);
+      a(i-1); my_lineto(getx() + u, gety());
+      b(i-1);
+    }
+}
+
+void b(int i)
+{
+   if (i > 0)
+   {
+      c(i-1); my_lineto(getx(),gety() - u);
+      b(i-1); my_lineto(getx() + u, gety());
+      b(i-1); my_lineto(getx(),gety() + u);
+      a(i-1);
+   }
+}
+
+void c(int i)
+{
+   if (i > 0) {
+      b(i-1); my_lineto(getx() + u,gety());
+      c(i-1); my_lineto(getx(), gety() - u);
+      c(i-1); my_lineto(getx() - u,gety());
+      d(i-1);
+   }
+}
+
+void d(int i )
+{
+   if (i > 0) {
+      a(i-1); my_lineto(getx(),gety() + u);
+      d(i-1); my_lineto(getx() - u,gety());
+      d(i-1); my_lineto(getx(),gety() - u);
+      c(i-1);
+   }
+}
+
+// ¢ëç¥àç¨¢ ¥â ¯® â®çª ¬ «¨¨î
+void my_lineto(int x2, int y2)
+{
+    int x1,y1;  // ª®®à¤¨ âë  ç «  ¯àï¬®©
+                // x2,y2 -  ª®®à¤¨ âë ª®æ 
+    int x,y;    // ª®®à¤¨ âë â¥ªãé¥© â®çª¨
+    int dx;     // ¯à¨à é¥¨¥  à£ã¬¥â 
+    int dy;     // ¯à¨à é¥¨¥ y ¯à¨ à¨á®¢ ¨¨
+                // ¢¥àâ¨ª «ì®© «¨¨¨
+    int color;  // æ¢¥â «¨¨¨
+    int a,b;    // ª®íää¨æ¨¥âë ãà ¢¥¨ï ¯àï¬®©
+    int n;      // ª®«-¢® â®ç¥ª
+    int i;
+
+    x1 = getx();
+    y1 = gety();
+    if ( x1 != x2 )
+    {
+      // ¥ ¢¥àâ¨ª «ì ï «¨¨ï
+      a = (y2-y1)/(x2-x1);
+      b = y1- a * x1;
+      n = abs(x2-x1)+1;
+      if (x2 > x1)
+        dx = 1;
+      else dx = -1;
+      x = x1;
+      color = getcolor();
+      for (i = 1; i<= n; i++)
+      {
+        y = a*x + b;
+        putpixel(x,y,color);
+        delay(DT);
+        x += dx;
+      }
+    }
+    else { //  ¢¥àâ¨ª «ì ï «¨¨ï
+       n = abs(y2-y1);
+       if (y2 > y1)
+          dy = 1;
+       else dy = -1;
+          x = x1;
+       y = y1;
+       color = getcolor();
+       for (i = 1; i<=n; i++)
+       {
+           putpixel(x, y, color);
+           delay(DT);
+           y += dy;
+       }
+    }
+    putpixel(x2, y2, color);
+    moveto(x2, y2);
+}
