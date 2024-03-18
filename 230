@@ -1,0 +1,58 @@
+// ˜ å¬ â ï ¤®áª 
+#include <graphics.h>
+#include <stdio.h>
+#include <conio.h>
+
+#define PATHTODRIVER "c:\\borlandc\\bgi\\"
+// è å¬ â ï ¤®áª 
+void doska()
+{
+    int x0 = 100,   // ª®®à¤¨ âë «¥¢®£® ¢¥àå¥£® ã£«  ¤®áª¨
+        y0 = 100;
+    int x,y;        // ª®®à¤¨ âë «¥¢®£® ¢¥àå¥£® ã£«  ª«¥âª¨
+    int w = 25;     // à §¬¥à ª«¥âª¨
+    int i,j;        // ®¬¥à áâà®ª¨ ¨ ª®«®ª¨
+
+    x = x0;
+    y = y0;
+    for (i = 0; i < 8; i++)   // ¢®á¥¬ì áâà®ª
+    {
+        for ( j = 0; j < 8; j++) // ¢®á¥¬ì ª«¥â®ª ¢ áâà®ª¥
+       {
+           // ¥á«¨ áã¬¬  ®¬¥à  áâà®ª¨ ¨ ®¬¥à 
+           // ª®«®ª¨,   ¯¥à¥á¥ç¥¨¨ ª®â®àëå  å®¤¨âáï
+           // ª«¥âª , ç¥â ï, â® ª«¥âª  - ª®à¨ç¥¢ ï,
+           //    ¨ ç¥ - ¦¥«â ï
+           if ((i+j) % 2)
+              setfillstyle(SOLID_FILL,BROWN);
+           else setfillstyle(SOLID_FILL,YELLOW);
+           bar(x,y,x+w,y+w);
+           x += w;
+       }
+       x = x0;
+       y += w;
+    }
+}
+
+void main(void)
+{
+   int gdriver = DETECT; // ¤à ©¢¥à
+   int gmode;            // à¥¦¨¬
+   int errorcode;        // ª®¤ ®è¨¡ª¨
+
+   initgraph(&gdriver, &gmode, PATHTODRIVER);
+   errorcode = graphresult();
+
+   if (errorcode != grOk)  // ®è¨¡ª  ¨¨æ¨ «¨§ æ¨¨ £à ä. à¥¦¨¬ 
+   {
+      printf("Žè¨¡ª : %d\n", errorcode);
+      puts("„«ï § ¢¥àè¥¨ï ¯à®£à ¬¬ë  ¦¬¨â¥ <Enter>");
+      getch();
+      return;
+   }
+
+   doska();
+
+   getch();
+   closegraph(); // ¢ëå®¤ ¨§ £à ä¨ç¥áª®£® à¥¦¨¬ 
+}
