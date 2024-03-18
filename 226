@@ -1,0 +1,51 @@
+// “§®à ¨§ «¨¨©
+// á«ãç ©®£® æ¢¥â 
+#include <graphics.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include "time.h"
+
+#define PATHTODRIVER "c:\\borlandc\\bgi\\"
+
+// ã§®à ¨§ «¨¨©
+void luzor(int n)
+{
+    int x,y;   // ª®®à¤¨ âë ª®æ  «¨¨¨
+    int c;     // æ¢¥â «¨¨¨
+    time_t t;
+
+    srand((unsigned)time(&t)); // ¨¨æ¨ «¨§ æ¨ï ƒ‘—
+    for (int i = 0; i < n; i++)
+    {
+
+        x = rand() % 640;
+        y = rand() % 480;
+        c = rand() % 16;
+        setcolor(c);
+        lineto(x,y);
+     }
+}
+
+void main(void)
+{
+   int gdriver = DETECT; // ¤à ©¢¥à
+   int gmode;            // à¥¦¨¬
+   int errorcode;        // ª®¤ ®è¨¡ª¨
+
+   initgraph(&gdriver, &gmode, PATHTODRIVER);
+   errorcode = graphresult();
+
+   if (errorcode != grOk)  // ®è¨¡ª  ¨¨æ¨ «¨§ æ¨¨ £à ä.à¥¦¨¬ 
+   {
+      printf("Žè¨¡ª : %d\n", errorcode);
+      puts("„«ï § ¢¥àè¥¨ï ¯à®£à ¬¬ë  ¦¬¨â¥ <Enter>");
+      getch();
+      exit(1);
+   }
+
+   luzor(200); // ã§®à ¨§ ®ªàã¦®áâ¥©
+
+   getch();
+   closegraph(); // ¢ëå®¤ ¨§ £à ä¨ç¥áª®£® à¥¦¨¬ 
+}
