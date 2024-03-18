@@ -1,0 +1,64 @@
+// ¨áã¥â ª®à ¡«¨ª (á ¨á¯®«ì§®¢ ¨¥¬ ¬¥â®¤  ¡ §®¢®© â®çª¨)
+#include <graphics.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+
+#define dx  10  // è £ á¥âª¨ ¯® •
+#define dy  10  // è £ á¥âª¨ ¯® Y
+
+void ship(int x, int y) // x,y - ª®®à¤¨ âë ¡ §®¢®© â®çª¨
+{
+    //  ª®à¯ãá
+    moveto(x,y);
+    lineto(x,y-2*dy);
+    lineto(x+10*dx,y-2*dy);
+    lineto(x+11*dx,y-3*dy);
+    lineto(x+17*dx,y-3*dy);
+    lineto(x+14*dx,y);
+    lineto(x,y);
+    //  ¤áâà®©ª 
+    moveto(x+3*dx,y-2*dy);
+    lineto(x+4*dx,y-3*dy);
+    lineto(x+4*dx,y-4*dy);
+    lineto(x+13*dx,y-4*dy);
+    lineto(x+13*dx,y-3*dy);
+    line(x+5*dx,y-3*dy,x+9*dx,y-3*dy);
+    // ª ¯¨â áª¨© ¬®áâ¨ª
+    rectangle(x+8*dx,y-4*dy,x+11*dx,y-5*dy);
+    // âàã¡ 
+    rectangle(x+7*dx,y-4*dy,x+8*dx,y-7*dy);
+    // ¨««î¬¨ â®àë
+    circle(x+12*dx,y-2*dy,dx/2);
+    circle(x+14*dx,y-2*dy,dx/2);
+    // ¬ çâ 
+    line(x+10*dx,y-5*dy,x+10*dx,y-10*dy);
+    // ®á áâª 
+    moveto(x+17*dx,y-3*dy);
+    lineto(x+10*dx,y-10*dy);
+    lineto(x,y-2*dy);
+}
+
+#define PATHTODRIVER "c:\\borlandc\\bgi\\"
+
+void main(void)
+{
+    int gdriver = DETECT; // ¤à ©¢¥à
+    int gmode;            // à¥¦¨¬
+    int errorcode;        // ª®¤ ®è¨¡ª¨
+
+    initgraph(&gdriver, &gmode, PATHTODRIVER);
+    errorcode = graphresult();
+
+    if (errorcode != grOk) // ®è¨¡ª  ¨¨æ¨ «¨§ æ¨¨ £à ä. à¥¦¨¬ 
+    {
+      printf("Žè¨¡ª : %d\n", errorcode);
+      puts("„«ï § ¢¥àè¥¨ï ¯à®£à ¬¬ë  ¦¬¨â¥ <Enter>");
+      getch();
+      exit(1);
+    }
+
+    ship(50,150);
+    getch();
+    closegraph(); // ¢ëå®¤ ¨§ £à ä¨ç¥áª®£® à¥¦¨¬ 
+}
