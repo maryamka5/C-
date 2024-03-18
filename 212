@@ -1,0 +1,12 @@
+// ”ãªæ¨ï ¯à®¢¥àï¥â, ï¢«ï¥âáï «¨ á¨¬¢®« £« á®© ¡ãª¢®©
+int glasn(char ch)
+{
+    static char gl[] ="€ …¥ˆ¨Ž®“ã›ëížîŸï\0";
+    int i = 0;
+
+    while (gl[i] && gl[i] != ch)
+        i++;
+    if ( gl[i] )
+       return(1);
+    else return(0);
+}
