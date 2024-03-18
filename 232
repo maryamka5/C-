@@ -1,0 +1,60 @@
+// ƒà ä¨ª äãªæ¨¨
+#include <graphics.h>
+#include <stdio.h>
+#include <conio.h>
+
+#define PATHTODRIVER "c:\\borlandc\\bgi\\"
+
+void grafik()
+{
+    float x,dx;   //  à£ã¬¥â ¨ ¥£® ¯à¨à é¥¨¥¨¥
+    float x1,x2;  // ¤¨ ¯ §® ¨§¬¥¥¨ï  à£ã¬¥â 
+    float y;      // § ç¥¨¥ äãªæ¨¨
+    int mx,my;    // ¬ áèâ ¡ ¯® X ¨ Y - ª®«-¢® â®ç¥ª
+                  // íªà  , á®®â¢¥âáâ¢ãîé¥¥ ¥¤¨¨æ¥
+                  // ¯® ®áï¬ ª®®à¤¨ â
+    int x0,y0;    //  ç «® ®á¥© ª®®à¤¨ â
+    int px,py;    // ª®®à¤¨ âë â®çª¨ £à ä¨ª    íªà ¥
+
+    x0 = 320; y0 = 240;
+    mx = 20; my = 20;
+    // ®á¨ ª®®à¤¨ â
+    line(10,y0,630,y0);
+    line(x0,10,x0,470);
+    // £à ä¨ª
+    x1 = -15;
+    x2 = 5;
+    dx = 0.1;
+    x = x1;
+    while ( x < x2 )
+    {
+        y =  0.5*x*x + x*4 - 3;  // äãªæ¨ï
+        px = x0 + x*mx;
+        py = y0 - y*my;
+        putpixel(px,py,WHITE);
+        x += dx;
+    }
+}
+
+void main(void)
+{
+   int gdriver = DETECT; // ¤à ©¢¥à
+   int gmode;            // à¥¦¨¬
+   int errorcode;        // ª®¤ ®è¨¡ª¨
+
+   initgraph(&gdriver, &gmode, PATHTODRIVER);
+   errorcode = graphresult();
+
+   if (errorcode != grOk)  // ®è¨¡ª  ¨¨æ¨ «¨§ æ¨¨ £à ä. à¥¦¨¬ 
+   {
+      printf("Žè¨¡ª : %d\n", errorcode);
+      puts("„«ï § ¢¥àè¥¨ï ¯à®£à ¬¬ë  ¦¬¨â¥ <Enter>");
+      getch();
+      return;
+   }
+
+   grafik();
+
+   getch();
+   closegraph(); // ¢ëå®¤ ¨§ £à ä¨ç¥áª®£® à¥¦¨¬ 
+}
