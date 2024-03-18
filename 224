@@ -1,0 +1,54 @@
+// “§®à ¨§ ®ªàã¦®áâ¥©
+//  á«ãç ©®£® à ¤¨ãá  ¨ æ¢¥â 
+#include <graphics.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include "time.h"
+#include "dos.h"
+
+#define PATHTODRIVER "c:\\borlandc\\bgi\\"
+
+// ã§®à ¨§ ®ªàã¦®áâ¥©
+void cuzor(int n)
+{
+    #define DELAY  // § ¤¥à¦ª  ¬¥¦¤ã ¢ë¢®¤®¬ ®ªàã¦®áâ¥©
+    int x,y,r; // ª®®à¤¨ âë æ¥âà  ¨ à ¤¨ãá ®ªàã¦®áâ¨
+    time_t t;
+
+    srand((unsigned)time(&t)); // ¨¨æ¨ «¨§ æ¨ï ƒ‘—
+    for (int i = 0; i < n; i++)
+    {
+        x = rand() % 640;
+        y = rand() % 480;
+        r = rand() % 240;
+        setcolor(rand() %16);
+        circle(x,y,r);
+        #ifdef DELAY
+        delay(5);
+        #endif
+    }
+}
+
+void main(void)
+{
+   int gdriver = DETECT; // ¤à ©¢¥à
+   int gmode;            // à¥¦¨¬
+   int errorcode;        // ª®¤ ®è¨¡ª¨
+
+   initgraph(&gdriver, &gmode, PATHTODRIVER);
+   errorcode = graphresult();
+
+   if (errorcode != grOk)  // ®è¨¡ª  ¨¨æ¨ «¨§ æ¨¨ £à ä¨ç¥áª®£® à¥¦¨¬ 
+   {
+      printf("Žè¨¡ª : %d\n", errorcode);
+      puts("„«ï § ¢¥àè¥¨ï ¯à®£à ¬¬ë  ¦¬¨â¥ <Enter>");
+      getch();
+      exit(1);
+   }
+
+   cuzor(200); // ã§®à ¨§ ®ªàã¦®áâ¥©
+
+   getch();
+   closegraph(); // ¢ëå®¤ ¨§ £à ä¨ç¥áª®£® à¥¦¨¬ 
+}
