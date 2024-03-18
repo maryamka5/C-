@@ -1,0 +1,46 @@
+// ‚ëç¨á«¥¨¥ § ç¥¨ï  à¨ä¬¥â¨ç¥áª®£® ¢ëà ¦¥¨ï
+#include <stdio.h>
+#include <conio.h>
+#include "stdlib.h"
+void main()
+{
+   char st[40];  // áâà®ª 
+   char buf[10]; // ¨§®¡à ¦¥¨¥ ®ç¥à¥¤®£® ç¨á« 
+   char op;      // ®¯¥à â®à
+   int rez;      // § ç¥¨¥ ¢ëà ¦¥¨ï
+   int n;        // ®ç¥à¥¤®¥ ç¨á«®
+
+   int i,j;
+
+   printf("\n‚¢¥¤¨â¥  à¨ä¬¥â¨ç¥áª®¥ ¢ëà ¦¥¨¥,\n");
+   printf(" ¯à¨¬¥à, 45+5-3-125+2 ¨  ¦¬¨â¥ <Enter>");
+   printf("(¯à®¡¥«ë ¨ ¤àã£¨¥ § ª¨ ¥¤®¯ãáâ¨¬ë)\n");
+   printf("->");
+   scanf("%s", &st);
+
+   rez = 0; // § ç¥¨¥ ¢ëà ¦¥¨ï
+   op = ' ';
+   i = j = 0;
+   while( st[i] )
+   {
+      // ¢ë¤¥«¨âì ç¨á«®
+      j = 0;
+      while (st[i] >= '0' && st[i] <= '9')
+         buf[j++] = st[i++];
+      buf[j] = '\0';
+      n = atoi(buf); // ¯à¥®¡à §®¢ âì áâà®ªã ¢ æ¥«®¥
+
+      // ¢ë¯®«¨âì ¤¥©áâ¢¨¥
+      switch ( op )
+      {
+        case '+': rez += n; break;
+        case '-': rez -= n; break;
+        case ' ': rez = n;  break; // ¯¥à¢®¥ ç¨á«® ¯à¨¬¥à 
+      }
+
+      // ¢ë¤¥«¨âì § ª ®¯¥à æ¨¨
+      op = st[i++];
+   }
+   printf("‡ ç¥¨¥ ¢¢¥¤¥®£® ¢ëà ¦¥¨ï: %d", rez);
+   printf("\n„«ï § ¢¥àè¥¨ï  ¦¬¨â¥ <Enter>");
+   getch();
