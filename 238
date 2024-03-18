@@ -1,0 +1,81 @@
+// Šàã£®¢ ï ¤¨ £à ¬¬ 
+#include <graphics.h>
+#include <stdio.h>
+#include <conio.h>
+#include <math.h>
+
+#define PATHTODRIVER "c:\\borlandc\\bgi\\"
+
+    #define N 4 // ª®«¨ç¥áâ¢® ª â¥£®à¨©
+
+void krdiagr(char* *name, float* dol)
+{
+    int a1,a2;     // ã£®«  ç «  ¨ ª®æ  á¥ªâ®à 
+    int color[4] = {BLUE, YELLOW, GREEN, RED};
+    int x,y;       // ª®®à¤¨ âë ¢ë¢®¤  «¥£¥¤ë
+    char st[25];   // ¨§®¡à ¦¥¨¥ ç¨á« 
+    int i;
+
+    // áâà®¨¬ ¤¨ £à ¬¬ã
+    a1 = 0;            // ®â ®á¨ Ž•
+    x = 350; y = 100;  // «¥¢ë© ¢¥àå¨© ã£®« ®¡« áâ¨ «¥£¥¤ë
+    for (i = 0; i < N; i++)
+    {
+      // á¥ªâ®à
+      a2 = a1 + 3.6 * dol[i];  // 1% - 3.6 £à ¤ãá 
+      if (i == N-1) a2 = 360; // ¯®á«¥¤¨©, ¯® áç¥âã, á¥ªâ®à
+      setfillstyle(SOLID_FILL, color[i]);
+      sector(200,200,a1,a2,100,100);
+      // pieslice(200,200,a1,a2,100);
+      a1 = a2;  // á«¥¤ãîé¨© á¥ªâ®à - ®â ª®æ  â¥ªãé¥£®
+      // «¥£¥¤ 
+      bar(x,y,x+30,y+10);
+      rectangle(x,y,x+30,y+10);
+      sprintf(st, "%s - %2.1f%\0", name[i], dol[i]);
+      outtextxy(x+50,y,st);
+      y += 20;
+    }
+}
+
+void main(void)
+{
+    char *name[N] = {"Š¨£¨\0","†ãà «ë\0",
+                     "Š æâ®¢ àë\0","à®ç¥¥\0"};
+    float kol[N];  // ª®«¨ç¥áâ¢® ¤«ï ª â¥£®à¨¨
+    float dol[N];  // ¤®«ï ª â¥£®à¨¨ ¢ ®¡é¥¬ ª®«¨ç¥áâ¢¥
+    float sum = 0; // ®¡é¥¥ ª®«-¢® ¯® ¢á¥¬ ª â¥£®à¨ï¬
+    int i;
+
+    int gdriver = DETECT; // ¤à ©¢¥à
+    int gmode;            // à¥¦¨¬
+    int errorcode;        // ª®¤ ®è¨¡ª¨
+
+    // ¢¢®¤ ¨áå®¤ëå ¤ ëå
+    puts("‚¢¥¤¨â¥ ª®«¨ç¥áâ¢® ¯® ª ¦¤®© ª â¥£®à¨¨");
+    for (i = 0; i < N; i++)
+    {
+      printf("%s -> ", name[i]);
+      scanf("%f", &kol[i]);
+      sum += kol[i];
+    }
+
+    // ¢ëç¨á«¨¬ ¤®«î ª ¦¤®© ª â¥£®à¨¨ ¢ ®¡é¥© áã¬¬¥
+    for (i = 0; i < N; i++)
+      dol[i] = kol[i]/sum*100;
+
+    // ¨¨æ¨ «¨§ æ¨ï £à ä¨ç¥áª®£® à¥¦¨¬ 
+    initgraph(&gdriver, &gmode, PATHTODRIVER);
+    errorcode = graphresult();
+
+    if (errorcode == grOk)
+    {
+        krdiagr(name, dol);// áâà®¨¬ ¤¨ £à ¬¬ã
+        getch();
+        closegraph(); // ¢ëå®¤ ¨§ £à ä¨ç¥áª®£® à¥¦¨¬ 
+   }
+   else {
+        printf("Žè¨¡ª : %d\n", errorcode);
+        puts("„«ï § ¢¥àè¥¨ï  ¦¬¨â¥ <Enter>");
+        getch();
+   }
+}
