@@ -1,0 +1,37 @@
+// ”ãªæ¨ï line ¢ë¢®¤¨â   íªà  áâà®ªã ¨§ á¨¬¢®«®¢
+#include "stdio.h"
+#include "conio.h"
+
+// ¢ë¢®¤¨â   íªà  áâà®ªã á®áâ®ïéãî
+// ¨§ n ch-á¨¬¢®«®¢
+void line(char ch, int n)
+{
+    for (int i = 0; i < n; i++)
+        putch(ch);
+}
+
+// ¢®§¢à é ¥â ¤«¨ã áâà®ª¨
+int length(char* st)
+{
+    int l = 0;  // ¤«¨  áâà®ª¨
+    char* p = st;  // ãª § â¥«ì   á¨¬¢®«
+    
+    while ( *p++  )
+        l++;
+    return(l);
+}
+
+void main()
+{
+    char mes[] = "Hello, World!\0";
+    int len;
+
+    len = length(mes);
+
+    line('*', len);
+    
+    printf("\nHello, World!\n");
+    line('*',len);
+    printf("\n„«ï § ¢¥àè¥¨ï  ¦¬¨â¥ <Enter>");
+    getch();
+}
