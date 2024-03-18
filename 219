@@ -1,0 +1,60 @@
+// ”ãªæ¨ï getint
+#include "stdio.h"
+#include "conio.h"
+#include "stdlib.h"
+
+//  ”ãªæ¨ï getint ¯à¥¤ § ç¥  ¤«ï ¢¢®¤  æ¥«®£® ¯®«®¦¨â¥«ì®£®
+//  ç¨á« , á®áâ®ïé¥£® ¨§ ®¤®© ¨«¨ ¤¢ãå æ¨äà. ‚® ¢à¥¬ï ¢¢®¤ ,
+//  ¤«ï à¥¤ ªâ¨à®¢ ¨ï, ¬®¦¥â ¨á¯®«ì§®¢ âìáï <Backspace>.
+//  à¨  ¦ â¨¨ <Enter> äãªæ¨ï ¢®§¢à é ¥â ¢¢¥¤¥®¥ ç¨á«®.
+
+#define K_BACK  8   // ª®¤ ª« ¢¨è¨ <Backspace>
+#define K_ENTER 13  // ª®¤ ª« ¢¨è¨ <Enter>
+#define HB      4   // ¤®¯ãáâ¨¬®¥ ª®«¨ç¥áâ¢® æ¨äà
+int getint()
+{
+  char ch;      // â¥ªãé¨© á¨¬¢®«
+  char buf[HB];  // ¢¢¥¤¥ë¥ æ¨äàë
+  int n = 0;    // ª®«-¢® ¢¢¥¤¥ëå æ¨äà
+
+  buf[0] = '\0';
+  while ((ch = getch()) != K_ENTER)
+        if (ch >= '0' && ch <= '9'&& n < HB)
+        {    putch(ch);
+            buf[n++] = ch;
+        }
+        else if (ch == K_BACK && n)
+             {
+                printf("\b \b");
+                n--;
+             }
+  if (n)
+  {
+    buf[n] = '\0';
+    return(atoi(buf));
+  }
+  else return(-1);
+}
+
+void main() {
+  
+  int a; // ¢¢¥¤¥®¥ ç¨á«®
+
+  puts("\n„¥¬®áâà æ¨ï à ¡®âë äãªæ¨¨ getint\n");
+
+  puts("”ãªæ¨ï getint ®¡¥á¯¥ç¨¢ ¥â ¢¢®¤ ");
+  puts("æ¥«®£® ¯®«®¦¨â¥«ì®£® ç¨á« .");
+  puts("‚® ¢à¥¬ï ¢¢®¤  ¤«ï à¥¤ ªâ¨à®¢ ¨ï ¬®¦¥â");
+  puts("¨á¯®«ì§®¢ âìáï ª« ¢¨è  <Backspace>");
+  puts("à¨  ¦ â¨¨ <Enter> äãªæ¨ï ¢®§¢à é ¥â");
+  puts("¢¢¥¤¥®¥ ç¨á«® ¨«¨ -1, ¥á«¨ ç¨á«® ¥ ¢¢¥¤¥®.");
+
+  puts("‚¢¥¤¨â¥ ç¨á«® ¨  ¦¬¨â¥ <Enter>");
+  printf("->");
+  if (a = getint())
+        printf("\n‚ë ¢¢¥«¨ ç¨á«® %d", a);
+  else puts("—¨á«® ¥ ¢¢¥¤¥®.");
+
+  puts("\n„«ï § ¢¥àè¥¨ï  ¦¬¨â¥ <Enter>");
+  getch();
+}
