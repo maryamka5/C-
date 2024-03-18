@@ -1,0 +1,7 @@
+// ”ãªæ¨ï ¢ëç¨á«ï¥â ¤®å®¤ ¯® ¢ª« ¤ã
+float profit(float sum,     // áã¬¬  ¢ª« ¤ 
+             float stavka,  // ¯à®æ¥â ï áâ ¢ª  (£®¤®¢ëå)
+             int srok)      //áà®ª ¢ª« ¤  (¤¥©)
+{
+    return(sum*(stavka/100/365)*srok); 
+}
