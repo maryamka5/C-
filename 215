@@ -1,0 +1,50 @@
+// ”ãªæ¨ï à¥è¥¨ï ª¢ ¤à â®£® ãà ¢¥¨ï
+#include "stdio.h"
+#include "conio.h"
+#include "math.h"
+
+int kvadur(float a, float b, float c, // ª®íä-âë ãà ¢¥¨ï
+            float *x1, float *x2)      // ª®à¨ ãà ¢¥¨ï
+    // § ç¥¨¥ äãªæ¨¨ - ª®«¨ç¥áâ¢® ª®à¥©
+    // ¨«¨ -1, ¥á«¨ ¥¢¥àë¥ ¨áå®¤ë¥ ¤ ë¥
+{
+    float d; // ¤¨áªà¨¬¨ â
+
+    if (a == 0) return(-1);
+
+    d = b*b-4*a*c;
+    if (d < 0)
+    return(0);    // ãà ¢¥¨¥ ¥ ¨¬¥¥â à¥è¥¨ï
+
+    *x1 = (-b+sqrt(d))/(2*a);
+    *x2 = (-b-sqrt(d))/(2*a);
+
+    if (*x1 != *x2) return(2);
+        else return(1);
+}
+
+// ¯à®¢¥àª  à ¡®â®á¯®á®¡®áâ¨ äãªæ¨¨
+void main()
+{
+    float a,b,c;  // ª®íää¨æ¨¥âë ãà ¢¥¨ï
+    float x1,x2;  // ª®à¨ ãà ¢¥¨ï
+    int n;        // ª®«-¢® ª®à¥©
+
+    puts("\n¥è¥¨¥ ª¢ ¤à â®£® ãà ¢¥¨ï");
+    puts("‚¢¥¤¨â¥ ¢ ®¤®© áâà®ª¥ ª®íää¨æ¨¥âë ¨  ¦¬¨â¥ <Enter>");
+    printf("->");
+    scanf("%f%f%f", &a, &b, &c);
+    switch (kvadur(a,b,c,&x1,&x2))
+    {
+        case -1: puts("Žè¨¡ª  ¨áå®¤ëå ¤ ëå.");
+                 break;
+        case 0:  puts("“à ¢¥¨¥ ¥ ¨¬¥¥â à¥è¥¨ï.");
+                 break;
+        case 1:  printf("Š®à¨ ®¤¨ ª®¢ë¥: x=%3.2f", x1);
+                 break;
+        case 2:  printf("x1=%3.2f x2=%3.2f", x1, x2);
+    }
+
+    puts("\n„«ï § ¢¥àè¥¨ï à ¡®âë  ¦¬¨â¥ <Enter>");
+    getch();
+}
