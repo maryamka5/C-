@@ -1,0 +1,40 @@
+// „®¯¨áë¢ ¥â ¢ ä ©« contacts.txt ä ¬¨«¨î, ¨¬ï ¨ ®¬¥à â¥«¥ä® 
+#include "stdio.h"
+#include "conio.h"
+
+#define FNAME "contacts.txt\0" // ¨¬ï ä ©« 
+void main()
+{
+    char fname[20] = FNAME;
+    FILE *f;  // ä ©«
+
+    char fam[15];  // ä ¬¨«¨ï
+    char name[15]; // ¨¬ï
+    char tel[9];   // ®¬¥à â¥«¥ä® 
+
+    puts("\n„®¡ ¢«¥¨¥ ¨ä®à¬ æ¨¨ ¢ â¥«¥ä®ë© á¯à ¢®ç¨ª\n");
+
+    // Žâªàëâì ä ©« ¢ à¥¦¨¬¥ ¤®¡ ¢«¥¨ï ( ) â¥ªáâ  (t)
+    // …á«¨ ä ©«  á â ª¨¬ ¨¬¥¥¬ ¥â, â® ® ¡ã¤¥â á®§¤ 
+    if ((out = fopen(fname, "at")) == NULL)
+    {
+        printf("Žè¨¡ª  ®âªàëâ¨ï ä ©«  ¤«ï ¤®¡ ¢«¥¨ï");
+        getch();
+        return;
+    }
+
+    // ¯®«ãç¨¬ ¤ ë¥ ®â ¯®«ì§®¢ â¥«ï
+    printf("” ¬¨«¨ï ->");
+    scanf("%s", &fam);
+    printf("ˆ¬ï ->");
+    scanf("%s", &name);
+    printf("’¥«¥ä® ->");
+    scanf("%s", &tel);
+    // ¨ § ¯¨è¥¬ ¨å ¢ ä ©«
+    fprintf(f,"%s %s %s", fam, name, tel);
+    puts("\nˆä®à¬ æ¨ï ¤®¡ ¢«¥ ");
+    fclose(f);     // § ªàëâì ä ©«
+
+    printf("\n\n„«ï § ¢¥àè¥¨ï  ¦¬¨â¥ <Enter>\n");
+    getch(); 
+}
