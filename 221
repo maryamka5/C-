@@ -1,0 +1,76 @@
+// ˆ£à  "21"
+#include "stdio.h"
+#include "conio.h"
+#include "stdlib.h" // äãªæ¨ï rand
+#include "time.h"   // äãªæ¨ï time
+
+
+int koloda[12];     // ª®«®¤  ª àâ
+int karta();        // äãªæ¨ï "¢ë¤ ¥â" ª àâã ¨§ ª®«®¤ë
+
+void main()
+{
+    int igrok = 0;  // ®çª¨ ¨£à®ª 
+    int comp = 0;   // ®çª¨ ª®¬¯ìîâ¥à 
+    char otv;       // ®â¢¥â ¨£à®ª 
+    time_t t;
+
+    // á®§¤ ¤¨¬ ª®«®¤ã
+    for (int i=2; i <=11; i++)
+        koloda[i] = 4;
+    koloda[5] = 0; // "¯ïâ¥à®ª" ¢ ª®«®¤¥ ¥â
+
+    // ¨¨æ¨ «¨§ æ¨ï £¥¥à â®à  á«ãç ©ëå ç¨á¥«
+    srand((unsigned)time(&t));
+
+    printf("\nˆ£à  ¢ ª àâë ¤® å®à®è¥£® ¥ ¤®¢¥¤¥â!\n");
+
+    do
+    {
+        // ª àâ  ¨£à®ªã
+        igrok += karta();
+
+        // ª àâ  ª®¬¯ìîâ¥àã
+        if (igrok < 21)
+            comp += karta();
+
+        if (igrok < 21 && comp < 21)
+        {
+            printf("“ ¢ á %d\n",igrok);
+            printf("…é¥ ª àâã? (¢¢¥¤¨â¥ y ¨«¨ n) ");
+            otv = getchar();
+
+            // ˆ£à®ª  ¦¨¬ ¥â ¤¢¥ ª« ¢¨è¨: á ¡ãª¢®© ¨ <Enter>.
+            // à¥¤ë¤ãé¨© ¢ë§®¢ getchar ¯à®ç¨â « ¡ãª¢ã.
+            // ‚ ¡ãä¥à¥ ª« ¢¨ âãàë ®áâ «áï ª®¤
+            // ª« ¢¨è¨ <Enter>. à®ç¨â ¥¬ ¥£®.
+            int b;
+            b = getchar();
+        }
+
+    }
+    while (igrok <= 21 && comp <= 21 && otv != 'n') ;
+
+    if (igrok == 21 || (igrok < 21 && igrok > comp) 
+                    || comp > 21)
+        printf("‚ë ¢ë¨£à «¨!\n");
+    else
+        printf("‚ë ¯à®¨£à «¨!\n");
+
+    printf ("“ ¢ á %d\n", igrok);
+    printf ("“ ª®¬¯ìîâ¥à  %d\n", comp);
+
+    printf("„«ï § ¢¥àè¥¨ï  ¦¬¨â¥ <Enter>");
+    getch();
+}
+
+// ¢ë¤ ¥â ª àâã ¨§ ª®«®¤ë
+int karta()
+{
+    int i;
+    do
+        i = rand() % 10 + 2;
+    while (koloda[i] == 0);
+    koloda[i]--;
+    return i;
+}
