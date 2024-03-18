@@ -1,0 +1,94 @@
+// — áë á ¬¨ãâ®© ¨ á¥ªã¤®© áâà¥«ª ¬¨
+#include <graphics.h>
+#include <stdio.h>
+#include <conio.h>
+#include <math.h>
+#include <dos.h>
+
+#define PATHTODRIVER "c:\\borlandc\\bgi\\"
+
+// ¢ë¢®¤¨â ¢¥ªâ®à § ¤ ®© ¤«¨ë ¨§ â¥ªãé¥© â®çª¨
+// ¨á¯®«ì§ã¥âáï ¤«ï ¢ë¢®¤  ¨§®¡à ¦¥¨ï áâà¥«ª¨
+void vector(int a,   //  ã£®« ¬¥¦¤ã ¢¥ªâ®à®¬ ¨ ®áìî OX
+            int l)  //  ¤«¨  ¢¥ªâ®à 
+{
+    #define G 0.0174532 // ª®íä. ã£«  ¨§ £à ¤ãá®¢ ¢ à ¤¨ ë
+    int x0,y0; //  ª®®à¤¨ âë  ç «  ¢¥ªâ®à 
+    int x1,y1; // ª®®à¤¨ âë ª®æ  ¢¥ªâ®à 
+
+    x0 = getx();
+    y0 = gety();
+    x1 = x0 + l*cos(a*G);
+    y1 = y0 - l*sin(a*G);
+    lineto(x1,y1);
+}
+
+void clock()
+{
+    int x0 = 80,   // ª®®à¤¨ âë æ¥âà  ç á®¢
+        y0 = 80;
+    int d = 50;    // ¤¨ ¬¥âà æ¨ä¥à¡« â 
+    int s = 0;     // ¢à¥¬ï, ª®«-¢® á¥ªã¤
+    int m = 0;     // ¢à¥¬ï, ª®«-¢® ¬¨ãâ
+    int as = 90;   // ã£®«  ª«®  á¥ªã¤®© áâà¥«ª¨
+    int am = 90;   // ã£®«  ª«®  ¬¨ãâ®© áâà¥«ª¨
+
+    circle(x0,y0,d+5);
+    setfillstyle(SOLID_FILL, 0);
+    do {
+       // ¢ë¢¥áâ¨ á¥ªã¤ãî áâà¥«ªã
+       moveto(x0,y0);
+       setcolor(YELLOW);
+       vector(as,d);
+
+       // ¢ë¢¥áâ¨ ¬¨ãâãî áâà¥«ªã
+       moveto(x0,y0);
+       setcolor(GREEN);
+       vector(am,d-10);
+
+       delay(1000); // § ¤¥à¦ª 
+
+       // áâ¥à¥âì áâà¥«ª¨
+       setcolor(0);
+       // á¥ªã¤ãî
+       moveto(x0,y0);
+       vector(as,d);
+
+       // ¬¨ãâãî
+       moveto(x0,y0);
+       vector(am,d-10);
+
+       s++;
+       if (s > 60) {
+         m++;
+         s = 0;
+         am -= 6; // è £ ¤¢¨¦¥¨ï ¬¨ãâ®© áâà¥«ª¨ 6 £à ¤ãá®¢
+         if (am < 0)  am = 354;
+       }
+       as -= 6;
+       if (as < 0)  as = 354;
+
+     } while ( !kbhit() );
+}
+
+void main(void)
+{
+   int gdriver = DETECT; // ¤à ©¢¥à
+   int gmode;            // à¥¦¨¬
+   int errorcode;        // ª®¤ ®è¨¡ª¨
+
+   initgraph(&gdriver, &gmode, PATHTODRIVER);
+   errorcode = graphresult();
+
+   if (errorcode == grOk)
+   {
+      clock();
+      closegraph(); // ¢ëå®¤ ¨§ £à ä¨ç¥áª®£® à¥¦¨¬ 
+   }
+   else
+   {
+      printf("Žè¨¡ª : %d\n", errorcode);
+      puts("„«ï § ¢¥àè¥¨ï ¯à®£à ¬¬ë  ¦¬¨â¥ <Enter>");
+      getch();
+   }
+}
