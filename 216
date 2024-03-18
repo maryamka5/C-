@@ -1,0 +1,17 @@
+// ”ãªæ¨ï starline ¢ë¢®¤¨â áâà®ªã ¨§ §¢¥§¤®ç¥ª
+#include "stdio.h"
+#include "conio.h"
+
+// ¢ë¢®¤¨â áâà®ªã ¨§ §¢¥§¤®ç¥ª
+void starline(int len)
+{
+    for (int i = 0; i < len; i++)
+        putch('*');
+}
+
+void main()
+{
+    starline(10);
+    puts("\n„«ï § ¢¥àè¥¨ï à ¡®âë ¯à®£à ¬¬ë  ¦¬¨â¥ <Enter>");
+    getch();
+}
