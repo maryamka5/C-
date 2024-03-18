@@ -1,0 +1,49 @@
+// ¥ªãàá¨¢ë© ã§®à ¨§ ®ªàã¦®áâ¥©
+#include <graphics.h>
+#include <stdio.h>
+#include <conio.h>
+#include <dos.h>
+
+#define PATHTODRIVER "c:\\borlandc\\bgi\\"
+
+// í«¥¬¥â ã§®à 
+void elem(int x, int y, int r, int p)
+{
+     // x,y,r - ª®®à¤¨ âë ¨ à ¤¨ãá æ¥âà 
+     //            ®á®¢®£® í«¥¬¥â  ã§®à 
+     // p - ¯®àï¤®ª ã§®à 
+
+     if ( p )
+     {
+        circle(x, y, r);
+        delay(100);
+        elem(x+r, y,   r/2, p-1);
+        elem(x,   y-r, r/2, p-1);
+        elem(x-r, y,   r/2, p-1);
+        elem(x,   y+r, r/2, p-1);
+    }
+}
+
+void main(void)
+{
+   int gdriver = DETECT; // ¤à ©¢¥à
+   int gmode;            // à¥¦¨¬
+   int errorcode;        // ª®¤ ®è¨¡ª¨
+
+   initgraph(&gdriver, &gmode, PATHTODRIVER);
+   errorcode = graphresult();
+
+   if (errorcode == grOk)
+   {
+        elem(320, 240, 60, 5); // à¨áã¥¬ ã§®à 5-£® ¯®àï¤ª 
+        outtext("„«ï § ¢¥àè¥¨ï  ¦¬¨â¥ <Enter>");
+        getch();
+        closegraph(); // ¢ëå®¤ ¨§ £à ä¨ç¥áª®£® à¥¦¨¬ 
+   }
+   else
+   {
+      printf("Žè¨¡ª : %d\n", errorcode);
+      puts("„«ï § ¢¥àè¥¨ï  ¦¬¨â¥ <Enter>");
+      getch();
+   }
+}
