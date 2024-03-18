@@ -1,0 +1,90 @@
+// Žæ¨äà®¢ ë¥ ª®®à¤¨ âë¥ ®á¨
+#include <graphics.h>
+#include <stdio.h>
+#include <conio.h>
+
+#define PATHTODRIVER "c:\\borlandc\\bgi\\"
+
+void grid()
+{
+    int x0,y0; // ª®®à¤¨ âë  ç «  ª®®à¤¨ âëå ®á¥©
+    int dx,dy; // è £ ª®®à¤¨ â®© á¥âª¨ (¢ ¯¨ªá¥«ïå)
+    int h,w;   // ¢ëá®â  ¨ è¨à¨  ®¡« áâ¨ ¢ë¢®¤ 
+               // ª®®à¤¨ â®© á¥âª¨
+    int x,y;
+
+    float lx,ly;    // ¬¥âª¨ «¨¨© á¥âª¨ ¯® X  Y
+    float dlx,dly;  // è £ ¬¥â®ª «¨¨© á¥âª¨ ¯® X ¨ Y
+    char st[8];     // ¨§®¡à ¦¥¨¥ ¬¥âª¨ «¨¨¨ á¥âª¨
+
+    x0 = 50; y0 = 400; // ®á¨  ç¨ îâáï ¢ â®çª¥ (50,400)
+    dx = 40; dy = 40;  // è £ ª®®à¤¨ â®© á¥âª¨ 40 ¯¨ªá¥«¥©
+    dlx = 0.5;        // è £ ¬¥â®ª ®á¨ X
+                      // ¬¥âª ¬¨ ¡ã¤ãâ: 0.5, 1.0, 1.5 ...
+    dly = 1;          // è £ ¬¥â®ª ®á¨ Y
+                      // ¬¥âª ¬¨ ¡ã¤ãâ: 1, 2, 3 ...
+    h = 300;
+    w = 400;
+
+    lx = 0;           //  ç «® ª®®à¤¨ â ¯®¬¥ç ¥âáï ¬¥âª ¬¨ 0
+    ly = 0;
+
+    line(x0,y0,x0,y0-h);  // ®áì X
+    line(x0,y0,x0+w,y0);  // ®áì Y
+
+    // § á¥çª¨, á¥âª  ¨ ®æ¨äà®¢ª  ¯® ®á¨ X
+    x = x0;
+    do {
+        // § á¥çª 
+        setlinestyle(SOLID_LINE, 0, 1);
+        line(x,y0-3,x,y0+3);
+        // ®æ¨äà®¢ª 
+        sprintf(st,"%2.1f",lx);
+        outtextxy(x-8,y0+5,st);
+        lx += dlx;
+        // «¨¨ï á¥âª¨
+        setlinestyle(DOTTED_LINE, 0, 1);
+        line(x,y0-3,x,y0-h);
+        x += dx;
+    } while (x < x0+w);
+
+    // § á¥çª¨, á¥âª  ¨ ®æ¨äà®¢ª  ¯® ®á¨ Y
+    y = y0;
+    do {
+        // § á¥çª 
+        setlinestyle(SOLID_LINE, 0, 1);
+        line(x0-3,y,x0+3,y);
+        // ®æ¨äà®¢ª 
+        sprintf(st,"%2.1f",ly);
+        outtextxy(x0-40,y,st);
+        ly += dly;
+        // «¨¨ï á¥âª¨
+        setlinestyle(DOTTED_LINE, 0, 1);
+        line(x0+3,y,x0+w,y);
+        setlinestyle(SOLID_LINE, 0, 1);
+        y -= dy;
+    } while (y > y0-h);
+}
+
+void main(void)
+{
+   int gdriver = DETECT; // ¤à ©¢¥à
+   int gmode;            // à¥¦¨¬
+   int errorcode;        // ª®¤ ®è¨¡ª¨
+
+   initgraph(&gdriver, &gmode, PATHTODRIVER);
+   errorcode = graphresult();
+
+   if (errorcode != grOk)  // ®è¨¡ª  ¨¨æ¨ «¨§ æ¨¨ £à ä. à¥¦¨¬ 
+   {
+      printf("Žè¨¡ª : %d\n", errorcode);
+      puts("„«ï § ¢¥àè¥¨ï ¯à®£à ¬¬ë  ¦¬¨â¥ <Enter>");
+      getch();
+      return;
+   }
+
+   grid();
+
+   getch();
+   closegraph(); // ¢ëå®¤ ¨§ £à ä¨ç¥áª®£® à¥¦¨¬ 
+}
