@@ -1,0 +1,57 @@
+// “§®à ¨§ ª¢ ¤à â®¢
+#include <graphics.h>
+#include <stdio.h>
+#include <conio.h>
+
+#define PATHTODRIVER "c:\\borlandc\\bgi\\"
+// ã§®à ¨§ ª¢ ¤à â®¢
+void uzor()
+{
+    int x;
+    int y = 100; 
+    int n;        // ª®«¨ç¥áâ¢® ª¢ ¤à â®¢ ¢ àï¤ã
+    int d = 30;   // à §¬¥à ª¢ ¤à â 
+    int l = 10;   // à ááâ®ï¨¥ ¬¥¦¤ã ª¢ ¤à â ¬¨
+    for (int i = 0; i < 5; i++)
+    {
+        // ¤«ï àï¤  ®¯à¥¤¥«¨¬ ª®®à¤¨ âã X
+        if (i % 2)
+        {  // ¥ç¥âë© àï¤
+            n = 5;   // ¯ïâì ª¢ ¤à â®¢ ¢ àï¤ã
+            x = 100;
+        }
+        else { // ç¥âë© àï¤
+            n = 4;
+            x = 100 + d/2+l/2;
+        }
+        for (int j = 0; j < n; j++)
+        {
+            rectangle(x,y,x+d,y+d);
+            x += d+l;
+        }
+        y += d/2+l/2;
+    }
+}
+
+void main(void)
+{
+   int gdriver = DETECT; // ¤à ©¢¥à
+   int gmode;            // à¥¦¨¬
+   int errorcode;        // ª®¤ ®è¨¡ª¨
+
+   initgraph(&gdriver, &gmode, PATHTODRIVER);
+   errorcode = graphresult();
+
+   if (errorcode != grOk)  // ®è¨¡ª  ¨¨æ¨ «¨§ æ¨¨ £à ä¨ç¥áª®£® à¥¦¨¬ 
+   {
+      printf("Žè¨¡ª : %d\n", errorcode);
+      puts("„«ï § ¢¥àè¥¨ï ¯à®£à ¬¬ë  ¦¬¨â¥ <Enter>");
+      getch();
+      return;
+   }
+
+   uzor();
+
+   getch();
+   closegraph(); // ¢ëå®¤ ¨§ £à ä¨ç¥áª®£® à¥¦¨¬ 
+}
